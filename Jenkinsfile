@@ -12,21 +12,21 @@ pipeline{
     stage('init'){
       when{
         expression{
-          param.action == 'apply'
+          params.action == 'apply'
       steps{
         sh "terraform init"
       }
       stage('validate'){
         when{
         expression{
-          param.action == 'apply'
+          params.action == 'apply'
         steps{
           sh "terraform validate"}
       }
         stage('plan'){
           when{
         expression{
-          param.action == 'apply'
+          params.action == 'apply'
           steps{
             sh "terraform plan"}
     }
@@ -38,7 +38,7 @@ pipeline{
             stage('destroy'){
               when{
         expression{
-          param.action == 'destroy'
+          params.action == 'destroy'
     }
   }
               steps{
