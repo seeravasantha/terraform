@@ -16,6 +16,8 @@ pipeline{
       steps{
         sh "terraform init"
       }
+        }
+      }
       stage('validate'){
         when{
         expression{
@@ -23,6 +25,9 @@ pipeline{
         steps{
           sh "terraform validate"}
       }
+        }
+      }
+    
         stage('plan'){
           when{
         expression{
@@ -30,6 +35,9 @@ pipeline{
           steps{
             sh "terraform plan"}
     }
+          }
+        }
+      
       stage('apply'){
         steps{
           sh "terraform apply --auto-approve"
